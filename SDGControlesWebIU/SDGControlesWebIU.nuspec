@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package >
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>$id$</id>
-    <version>1.0.0</version>
+    <version>0.0.0.1</version>
     <title>SDGControlesWebIU</title>
     <authors>SISTEMAS DE GUATEMALA</authors>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="expression">MIT</license>
     <!-- <icon>icon.png</icon> -->
-    <projectUrl>http://project_url_here_or_delete_this_line/</projectUrl>
-    <description>$description$</description>
+    <description>Proyecto para el uso de Sistemas de Guatemala. El proyecto estará en constantes actualizaciones hasta que se detengan los proyectos basados en ASP.NET Web Forms</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
-    <copyright>$copyright$</copyright>
-    <tags>Tag1 Tag2</tags>
+    <tags>ASP ASP.NET</tags>
   </metadata>
 </package>
