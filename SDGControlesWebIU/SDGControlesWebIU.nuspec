@@ -10,4 +10,7 @@
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     <tags>ASP ASP.NET</tags>
   </metadata>
+  <files>
+    <file src="bin\Release\*.dll" target="lib" />
+  </files>
 </package>
