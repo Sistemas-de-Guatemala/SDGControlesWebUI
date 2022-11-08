@@ -86,7 +86,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="SCajaTexto\SCajaTexto.vb" />
     <Compile Include="SControlesWebIU.vb" />
+    <Compile Include="SDesplegable\SDesplegable.vb" />
     <Compile Include="SExtensiones.vb" />
     <Compile Include="STabContenedor\STabContenedor.vb" />
     <Compile Include="STabContenedor\STabPestana.vb" />
@@ -110,5 +112,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
