@@ -2,7 +2,7 @@
 ''' <summary>
 ''' Es el contenedor de las pestañas
 ''' </summary>
-<ToolboxData("<{0}:STabContenedor runat=server></{0}:STabContenedor>")>
+<ToolboxData("<{0}:STabContenedor ID='stc_' runat=server></{0}:STabContenedor>")>
 Public Class STabContenedor
     Inherits System.Web.UI.WebControls.Panel
 

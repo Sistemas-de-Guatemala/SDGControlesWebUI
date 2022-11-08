@@ -4,7 +4,7 @@ Imports System.Web.UI
 ''' <summary>
 ''' Este componente Renderiza controles de TabPanel (Pestañas)
 ''' </summary>
-<ToolboxData("<{0}:STabPestana runat=server Titulo=stp_{1} />")>
+<ToolboxData("<{0}:STabPestana ID='stp_' runat=server Titulo=stp_{1} ></{0}:STabPestana>")>
 Partial Public Class STabPestana
     Inherits WebControls.Panel
     Implements IPostBackEventHandler
