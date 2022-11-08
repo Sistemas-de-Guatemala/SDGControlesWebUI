@@ -28,6 +28,7 @@ Public Class SDesplegable
             ViewState("titulo_desplegable") = value
         End Set
     End Property
+
     Public Overrides Sub RenderBeginTag(writer As HtmlTextWriter)
         writer.Write("<div class='m-0 form-label'>")
         If Titulo.Length > 0 Then
@@ -38,9 +39,8 @@ Public Class SDesplegable
     End Sub
 
     Public Overrides Sub RenderEndTag(writer As HtmlTextWriter)
-        writer.Write("</div>")
-
         MyBase.RenderEndTag(writer)
+        writer.Write("</div>")
     End Sub
 
 
