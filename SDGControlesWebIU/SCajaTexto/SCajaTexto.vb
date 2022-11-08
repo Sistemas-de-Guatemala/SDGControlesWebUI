@@ -1,5 +1,6 @@
 ﻿Imports System.Web.UI
 
+<ToolboxData("<{0}:SCajaTexto ID='stxt_' runat=server />")>
 Public Class SCajaTexto
     Inherits System.Web.UI.WebControls.TextBox
 

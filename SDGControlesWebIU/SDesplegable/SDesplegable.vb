@@ -1,5 +1,6 @@
 ﻿Imports System.Web.UI
 
+<ToolboxData("<{0}:SDesplegable ID='sddl_' runat=server></{0}:SDesplegable>")>
 Public Class SDesplegable
     Inherits System.Web.UI.WebControls.DropDownList
 
