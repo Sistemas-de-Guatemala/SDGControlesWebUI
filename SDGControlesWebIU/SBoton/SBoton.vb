@@ -22,26 +22,32 @@ Public Class SBoton
         End Set
     End Property
 
+    Private Sub VerificarSiYaExisteLaClase(clase As String)
+        If Not CssClass.Contains(clase) Then
+            CssClass &= " " & clase
+        End If
+    End Sub
+
     Private Sub RenderizarTipoBotonColor()
         Select Case TipoBotonColor
             Case ESBotonColores.PRIMARIO
-                CssClass += "btn-primary"
+                VerificarSiYaExisteLaClase("btn-primary")
             Case ESBotonColores.SECUNDARIO
-                CssClass += "btn-secondary"
+                VerificarSiYaExisteLaClase("btn-secondary")
             Case ESBotonColores.OK
-                CssClass += "btn-success"
+                VerificarSiYaExisteLaClase("btn-success")
             Case ESBotonColores.PELIGRO
-                CssClass += "btn-danger"
+                VerificarSiYaExisteLaClase("btn-danger")
             Case ESBotonColores.ADVERTENCIA
-                CssClass += "btn-warning"
+                VerificarSiYaExisteLaClase("btn-warning")
             Case ESBotonColores.INFO
-                CssClass += "btn-info"
+                VerificarSiYaExisteLaClase("btn-info")
             Case ESBotonColores.LUZ
-                CssClass += "btn-light"
+                VerificarSiYaExisteLaClase("btn-light")
             Case ESBotonColores.OSCURO
-                CssClass += "btn-dark"
+                VerificarSiYaExisteLaClase("btn-dark")
             Case ESBotonColores.LINK
-                CssClass += "btn-link"
+                VerificarSiYaExisteLaClase("btn-link")
         End Select
     End Sub
 
