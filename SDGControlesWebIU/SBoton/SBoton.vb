@@ -56,6 +56,8 @@ Public Class SBoton
         RenderizarTipoBotonColor()
         If Not Enabled Then
             Attributes.Add("disabled", "")
+        Else
+            Attributes.Remove("disabled")
         End If
     End Sub
 

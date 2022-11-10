@@ -87,11 +87,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SBoton\SBoton.vb" />
+    <Compile Include="SCheck\SCheck.vb" />
     <Compile Include="SEnumeraciones\ESBoton.vb" />
     <Compile Include="SCajaTexto\SCajaTexto.vb" />
     <Compile Include="SControlesWebIU.vb" />
     <Compile Include="SDesplegable\SDesplegable.vb" />
     <Compile Include="SExtensiones.vb" />
+    <Compile Include="SSwitch\SSwitch.vb" />
     <Compile Include="STablaDinamica\STablaDinamica.vb" />
     <Compile Include="SListaBotones\SListaBotones.vb" />
     <Compile Include="SListaBotones\SListaItemBoton.vb" />
