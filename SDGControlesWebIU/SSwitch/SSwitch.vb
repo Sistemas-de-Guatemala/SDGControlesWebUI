@@ -9,7 +9,7 @@ Public Class SSwitch
 
     Sub New()
         CssClass += " sswitch form-check form-switch"
-        InputAttributes.Add("class", "form-check-input")
+        InputAttributes.Add("class", "sswitch-input form-check-input")
         InputAttributes.Add("role", "switch")
         LabelAttributes.Add("class", "form-check-label")
     End Sub

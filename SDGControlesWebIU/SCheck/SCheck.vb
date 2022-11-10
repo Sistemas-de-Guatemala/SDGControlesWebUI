@@ -9,7 +9,7 @@ Public Class SCheck
 
     Sub New()
         CssClass += " scheck form-check"
-        InputAttributes.Add("class", "form-check-input")
+        InputAttributes.Add("class", "scheck-input form-check-input")
         LabelAttributes.Add("class", "form-check-label")
     End Sub
 
