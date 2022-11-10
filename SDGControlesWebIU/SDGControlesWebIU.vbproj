@@ -92,6 +92,7 @@
     <Compile Include="SControlesWebIU.vb" />
     <Compile Include="SDesplegable\SDesplegable.vb" />
     <Compile Include="SExtensiones.vb" />
+    <Compile Include="STablaDinamica\STablaDinamica.vb" />
     <Compile Include="SListaBotones\SListaBotones.vb" />
     <Compile Include="SListaBotones\SListaItemBoton.vb" />
     <Compile Include="SListaBotones\SListaItemSeparador.vb" />
