@@ -1,4 +1,5 @@
-﻿Imports System.Web.UI
+﻿Imports System.ComponentModel
+Imports System.Web.UI
 ''' <summary>
 ''' Componente de Radio botón personalizado
 ''' </summary>
@@ -10,6 +11,22 @@ Public Class SRadio
         InputAttributes.Add("class", "form-check-input")
         LabelAttributes.Add("class", "form-check-label")
     End Sub
+
+    ''' <summary>
+    ''' Está propiedad almacena un datos especifico
+    ''' </summary>
+    ''' <returns></returns>
+    <DefaultValue("00")>
+    <Category("Datos")>
+    <Localizable(True)>
+    Public Property Valor As String
+        Get
+            Return IIf(ViewState("valor_radio") <> Nothing, ViewState("valor_radio"), "")
+        End Get
+        Set(value As String)
+            ViewState("valor_radio") = value
+        End Set
+    End Property
 
     Protected Overrides Sub OnPreRender(e As EventArgs)
         MyBase.OnPreRender(e)
