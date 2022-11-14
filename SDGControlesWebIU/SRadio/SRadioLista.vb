@@ -69,18 +69,6 @@ Public Class SRadioLista
         End Set
     End Property
 
-    Protected Overrides Sub OnInit(e As EventArgs)
-        MyBase.OnInit(e)
-
-        For Each elemento As Control In Controls
-
-            Dim radio As RadioButton = TryCast(elemento, RadioButton)
-
-            radio.InputAttributes.Add("class", "form-check-input")
-            radio.LabelAttributes.Add("class", "form-check-label")
-        Next
-    End Sub
-
     Public Overrides Sub RenderControl(writer As HtmlTextWriter)
         Dim estaHabilitado = ""
         If Not Habilitado Then
