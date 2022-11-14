@@ -4,23 +4,22 @@ Imports System.Web.UI.WebControls
 ''' <summary>
 ''' Contenedor de radio buttons
 ''' </summary>
-<ParseChildren(True)>
-<PersistChildren(False)>
-<ValidationProperty("ValorSeleccionado")>
 <ToolboxData("<{0}:SRadioLista ID=srl_ runat=server></{0}:SRadioLista>")>
 Public Class SRadioLista
-    Inherits Control
-    Implements IPostBackEventHandler
+    Inherits RadioButtonList
 
     Sub New()
         EnableViewState = True
+        RepeatLayout = RepeatLayout.Flow
+        CssClass += " form-check"
     End Sub
 
-
-    <PersistenceMode(PersistenceMode.InnerProperty)>
-    <TemplateContainer(GetType(SRadio))>
-    <TemplateInstance(TemplateInstance.Single)>
-    Public Property SRadios As List(Of SRadio)
+    Private Enum EVALORES
+        TITULO
+        VALOR_SELECCIONADO
+        HABILITADO
+        ESTADOS_INTERNOS
+    End Enum
 
     ''' <summary>
     ''' Este texto va a generar un label en el contenedor
@@ -70,6 +69,18 @@ Public Class SRadioLista
         End Set
     End Property
 
+    Protected Overrides Sub OnInit(e As EventArgs)
+        MyBase.OnInit(e)
+
+        For Each elemento As Control In Controls
+
+            Dim radio As RadioButton = TryCast(elemento, RadioButton)
+
+            radio.InputAttributes.Add("class", "form-check-input")
+            radio.LabelAttributes.Add("class", "form-check-label")
+        Next
+    End Sub
+
     Public Overrides Sub RenderControl(writer As HtmlTextWriter)
         Dim estaHabilitado = ""
         If Not Habilitado Then
@@ -84,39 +95,6 @@ Public Class SRadioLista
         MyBase.RenderControl(writer)
 
         writer.Write("</fieldset>")
-    End Sub
-
-    Protected Overrides Sub DataBind(raiseOnDataBinding As Boolean)
-        For i = 0 To SRadios.Count - 1
-            Dim sradio = SRadios(i)
-            If sradio.Checked Then
-                ValorSeleccionado = sradio.Valor
-            End If
-        Next
-    End Sub
-
-    Protected Overrides Sub CreateChildControls()
-        Controls.Clear()
-
-        Dim valor_unico_radios As String = ID & "_" & UniqueID
-
-        For i = 0 To SRadios.Count - 1
-            Dim sradio = SRadios(i)
-            sradio.ClientIDMode = ClientIDMode.Static
-            sradio.ID = valor_unico_radios
-            If ValorSeleccionado = sradio.Valor Then
-                sradio.Checked = True
-            Else
-                sradio.Checked = False
-            End If
-
-            Controls.Add(sradio)
-        Next
-    End Sub
-
-    Public Sub RaisePostBackEvent(eventArgument As String) Implements IPostBackEventHandler.RaisePostBackEvent
-        Dim algo = eventArgument
-        Console.WriteLine(algo)
     End Sub
 
 End Class

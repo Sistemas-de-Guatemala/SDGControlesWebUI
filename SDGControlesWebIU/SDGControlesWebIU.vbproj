@@ -93,7 +93,6 @@
     <Compile Include="SControlesWebIU.vb" />
     <Compile Include="SDesplegable\SDesplegable.vb" />
     <Compile Include="SExtensiones.vb" />
-    <Compile Include="SRadio\SRadio.vb" />
     <Compile Include="SRadio\SRadioLista.vb" />
     <Compile Include="SSwitch\SSwitch.vb" />
     <Compile Include="STablaDinamica\STablaDinamica.vb" />
