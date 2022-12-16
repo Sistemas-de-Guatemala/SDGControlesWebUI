@@ -6,18 +6,18 @@ Imports System.Web.UI.WebControls
 ''' </summary>
 <ToolboxData("<{0}:STablaDinamica ID=std_ runat=server></{0}:STablaDinamica>")>
 Public Class STablaDinamica
-    Inherits System.Web.UI.WebControls.DataGrid
+    Inherits DataGrid
 
     Sub New()
-        CssClass += " table table-striped table-bordered datatable"
+        CssClass += " table table-borderless datatable table-hover tablaP "
         Width = Unit.Parse("100%")
     End Sub
 
-    Protected Overrides Sub OnPreRender(ByVal e As EventArgs)
+    Protected Overrides Sub OnPreRender(e As EventArgs)
         UseAccessibleHeader = True
 
         If Controls.Count > 0 Then
-            Dim table As Table = TryCast(Controls(0), Table)
+            Dim table = TryCast(Controls(0), Table)
 
             If table IsNot Nothing AndAlso table.Rows.Count > 0 Then
                 UseAccessibleHeader = True
