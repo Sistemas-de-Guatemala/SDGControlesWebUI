@@ -19,6 +19,19 @@ Public Class SCajaTexto
     End Sub
 
     ''' <summary>
+    ''' Muestra un icono por defecto a la derecha en la caja de texto
+    ''' </summary>
+    ''' <returns>String</returns>
+    Public Property Icono As String
+        Get
+            Return IIf(ViewState("icono_txt") <> Nothing, ViewState("icono_txt"), "")
+        End Get
+        Set(value As String)
+            ViewState("icono_txt") = value
+        End Set
+    End Property
+
+    ''' <summary>
     ''' Este texto va a generar un label arriba del control
     ''' </summary>
     ''' <returns></returns>
@@ -37,7 +50,21 @@ Public Class SCajaTexto
             writer.Write($"<label class='fuente_aspx form-label' for='{ClientID}'>{Titulo}</label>")
         End If
 
-        MyBase.RenderBeginTag(writer)
+        If Icono.Length > 0 Then
+            writer.Write("<div class='position-relative'>")
+
+            writer.Write($"<i class='position-absolute ms-3 top-50 start-0 translate-middle-y {Icono}'></i>")
+
+            If Not CssClass.Contains("ps-5") Then
+                CssClass += " ps-5"
+            End If
+
+            MyBase.RenderBeginTag(writer)
+
+            writer.Write("</div>")
+        Else
+            MyBase.RenderBeginTag(writer)
+        End If
     End Sub
 
     Public Overrides Sub RenderEndTag(writer As HtmlTextWriter)
