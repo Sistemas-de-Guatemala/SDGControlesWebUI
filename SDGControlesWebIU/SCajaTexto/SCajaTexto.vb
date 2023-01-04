@@ -4,6 +4,8 @@
 Public Class SCajaTexto
     Inherits System.Web.UI.WebControls.TextBox
 
+    Private Property AutoCompletado As New List(Of String)
+
     Sub New()
         CssClass += " fuente_aspx form-control"
         EnableViewState = True
@@ -44,6 +46,16 @@ Public Class SCajaTexto
         End Set
     End Property
 
+    Private Sub RenderizarAutocompletado(writer As HtmlTextWriter)
+        If AutoCompletado.Count > 0 Then
+            writer.Write($"<datalist id='{UniqueID}'>")
+            For Each palabra In AutoCompletado
+                writer.Write($"<option value='{palabra.Replace("'", "´")}' />")
+            Next
+            writer.Write("</datalist>")
+        End If
+    End Sub
+
     Public Overrides Sub RenderBeginTag(writer As HtmlTextWriter)
         writer.Write("<div class='m-0 form-label'>")
         If Titulo.Length > 0 Then
@@ -60,10 +72,11 @@ Public Class SCajaTexto
             End If
 
             MyBase.RenderBeginTag(writer)
-
+            RenderizarAutocompletado(writer)
             writer.Write("</div>")
         Else
             MyBase.RenderBeginTag(writer)
+            RenderizarAutocompletado(writer)
         End If
     End Sub
 
@@ -73,4 +86,10 @@ Public Class SCajaTexto
         MyBase.RenderEndTag(writer)
     End Sub
 
+
+    Public Sub FijarAutoCompletado(autocompletado As List(Of String))
+        Me.AutoCompletado = autocompletado
+        Attributes.Remove("list")
+        Attributes.Add("list", UniqueID)
+    End Sub
 End Class
