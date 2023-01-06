@@ -45,6 +45,19 @@ Public Class SCajaTexto
             ViewState("titulo_txt") = value
         End Set
     End Property
+    
+    ''' <summary>
+    ''' Si el campo es obligatorio se agrega una clase css para cambiar el borde del control
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property Obligatorio As Boolean
+        Get
+            Return IIf(ViewState("obligatorio_txt") <> Nothing, ViewState("obligatorio_txt"), False)
+        End Get
+        Set(value As Boolean)
+            ViewState("obligatorio_txt") = value
+        End Set
+    End Property
 
     Private Sub RenderizarAutocompletado(writer As HtmlTextWriter)
         If AutoCompletado.Count > 0 Then
@@ -55,8 +68,15 @@ Public Class SCajaTexto
             writer.Write("</datalist>")
         End If
     End Sub
+    
+    Private Sub RenderizarObligatoriedad()
+        If Obligatorio and Not CssClass.Contains("input_obligatorio") Then
+            CssClass += " input_obligatorio"
+        End If
+    End Sub
 
     Public Overrides Sub RenderBeginTag(writer As HtmlTextWriter)
+        RenderizarObligatoriedad()
         writer.Write("<div class='m-0 form-label'>")
         If Titulo.Length > 0 Then
             writer.Write($"<label class='fuente_aspx form-label' for='{ClientID}'>{Titulo}</label>")
