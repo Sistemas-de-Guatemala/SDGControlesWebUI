@@ -40,3 +40,14 @@
     ''' </summary>
     POR_DEFECTO
 End Enum
+
+Public Enum EPosicionIconos
+    ''' <summary>
+    ''' Posiciona un icono en un botón a la izquierda del texto en el botón
+    ''' </summary>
+    IZQUIERDA
+    ''' <summary>
+    ''' Posiciona un icono en un botón a la derecha del texto en el botón
+    ''' </summary>
+    DERECHA
+End Enum

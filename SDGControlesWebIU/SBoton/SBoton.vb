@@ -8,8 +8,11 @@ Imports System.Web.UI
 Public Class SBoton
     Inherits System.Web.UI.WebControls.Button
 
+    Private _Icono As String
+    Private _PosicionIcono As EPosicionIconos
+    Private _ColorBotonConIcono As String
+
     Sub New()
-        CssClass += " btn"
         EnableViewState = True
     End Sub
 
@@ -23,8 +26,19 @@ Public Class SBoton
     End Property
 
     Private Sub VerificarSiYaExisteLaClase(clase As String)
-        If Not CssClass.Contains(clase) Then
-            CssClass &= " " & clase
+        If Icono.Length > 0 Then
+            _ColorBotonConIcono = clase
+            Style.Add("background", "none")
+            Style.Add("border", "none")
+            Style.Add("outline", "none")
+        Else
+            If Not CssClass.Contains(clase) Then
+                CssClass &= " " & clase
+            End If
+
+            If Not CssClass.Contains("btn") Then
+                CssClass &= " btn"
+            End If
         End If
     End Sub
 
@@ -61,6 +75,55 @@ Public Class SBoton
         End If
     End Sub
 
+    ''' <summary>
+    ''' El icono se mostrará a la izquierda por defecto del texto
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property Icono As String
+        Get
+            Return IIf(_Icono <> Nothing, _Icono, "")
+        End Get
+        Set(value As String)
+            _Icono = value
+        End Set
+    End Property
 
+    ''' <summary>
+    ''' Posiciona el icono a la izquierda o a la derecha del texto, por defecto es a la Izquierda
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property PosicionIcono As EPosicionIconos
+        Get
+            Return IIf(_PosicionIcono <> Nothing, _PosicionIcono, EPosicionIconos.IZQUIERDA)
+        End Get
+        Set(value As EPosicionIconos)
+            _PosicionIcono = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Cuando se llama RenderBeginTag e Icono.Length > 0 está función se ejecuta
+    ''' </summary>
+    ''' <param name="writer"></param>
+    Public Overridable Sub RenderizarIcono(writer As HtmlTextWriter)
+        writer.Write($"<div class='btn {_ColorBotonConIcono}'>")
+
+        If PosicionIcono = EPosicionIconos.IZQUIERDA Then
+            writer.Write(Icono)
+            MyBase.RenderBeginTag(writer)
+        Else
+            MyBase.RenderBeginTag(writer)
+            writer.Write(Icono)
+        End If
+        writer.Write("</div>")
+    End Sub
+
+    Public Overrides Sub RenderBeginTag(writer As HtmlTextWriter)
+        If Icono.Length > 0 Then
+            RenderizarIcono(writer)
+        Else
+            MyBase.RenderBeginTag(writer)
+        End If
+    End Sub
 
 End Class
