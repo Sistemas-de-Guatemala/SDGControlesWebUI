@@ -122,7 +122,10 @@ Partial Public Class STabPestana
     ''' <param name="eventArgument"></param>
     Public Sub RaisePostBackEvent(eventArgument As String) Implements IPostBackEventHandler.RaisePostBackEvent
         Dim padre As STabContenedor = Parent
-        padre.IndiceActual = Page.Request("__EVENTARGUMENT")
-        GenerarEventoClick()
+        Dim evento_argumento = Page.Request("__EVENTARGUMENT")
+        If IsNumeric(evento_argumento) Then
+            padre.IndiceActual = evento_argumento
+            GenerarEventoClick()
+        End If
     End Sub
 End Class
