@@ -32,12 +32,12 @@ Public Class SBoton
             Style.Add("border", "none")
             Style.Add("outline", "none")
         Else
-            If Not CssClass.Contains(clase) Then
-                CssClass &= " " & clase
-            End If
-
             If Not CssClass.Contains("btn") Then
                 CssClass &= " btn"
+            End If
+
+            If Not CssClass.Contains(clase) Then
+                CssClass &= " " & clase
             End If
         End If
     End Sub
