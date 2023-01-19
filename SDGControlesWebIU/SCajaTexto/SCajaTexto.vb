@@ -206,9 +206,13 @@ Public Class SCajaTexto
     End Sub
 
     Public Overrides Sub RenderEndTag(writer As HtmlTextWriter)
-        writer.Write("</div>")
-
-        MyBase.RenderEndTag(writer)
+        If TextMode <> WebControls.TextBoxMode.MultiLine Then
+            writer.Write("</div>")
+            MyBase.RenderEndTag(writer)
+        Else
+            MyBase.RenderEndTag(writer)
+            writer.Write("</div>")
+        End If
     End Sub
 
 
