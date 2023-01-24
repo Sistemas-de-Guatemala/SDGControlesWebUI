@@ -8,14 +8,62 @@ Imports System.Web.UI.WebControls
 Public Class STablaDinamica
     Inherits DataGrid
 
+    Private mMostrarFiltros As Boolean = True
+    Private mExportar As Boolean = True
+
     Sub New()
-        CssClass += " table table-borderless datatable table-hover tablaP "
+        CssClass += " table table-borderless table-hover tablaP "
         Width = Unit.Parse("100%")
+        AutoGenerateColumns = False
+        EnableViewState = True
     End Sub
 
-    Protected Overrides Sub OnPreRender(e As EventArgs)
-        UseAccessibleHeader = True
+    ''' <summary>
+    ''' Esta propiedad habilita los filtros en la tabla, por defecto es verdadero
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property MostrarFiltros As Boolean
+        Get
+            Return mMostrarFiltros
+        End Get
+        Set(value As Boolean)
+            mMostrarFiltros = value
+        End Set
+    End Property
 
+    ''' <summary>
+    ''' Esta propiedad habilita los botones de exportar en la tabla, por defecto es verdadero
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property Exportar As Boolean
+        Get
+            Return mExportar
+        End Get
+        Set(value As Boolean)
+            mExportar = value
+        End Set
+    End Property
+
+    Protected Overrides Sub OnPreRender(e As EventArgs)
+        If Exportar And MostrarFiltros Then
+            If Not CssClass.Contains("datatable-x-defecto") Then
+                CssClass += " datatable-x-defecto"
+            End If
+        ElseIf Exportar And Not MostrarFiltros Then
+            If Not CssClass.Contains("datatable-con-exportar") Then
+                CssClass += " datatable-con-exportar"
+            End If
+        ElseIf Not Exportar And MostrarFiltros Then
+            If Not CssClass.Contains("datatable-con-filtros") Then
+                CssClass += " datatable-con-filtros"
+            End If
+        Else
+            If Not CssClass.Contains("datatable-con-defecto") Then
+                CssClass += " datatable-x-defecto"
+            End If
+        End If
+
+        UseAccessibleHeader = True
         If Controls.Count > 0 Then
             Dim table = TryCast(Controls(0), Table)
 
