@@ -35,6 +35,40 @@
     ''' Sin color y subrayado con letra celeste
     ''' </summary>
     LINK
+
+    ''' <summary>
+    ''' Color mas o menos azul con letras blancas sin relleno
+    ''' </summary>
+    PRIMARIO_SIN_RELLENO
+    ''' <summary>
+    ''' Color gris con letras blancas sin relleno
+    ''' </summary>
+    SECUNDARIO_SIN_RELLENO
+    ''' <summary>
+    ''' Color verde con letras blancas sin relleno
+    ''' </summary>
+    OK_SIN_RELLENO
+    ''' <summary>
+    ''' Color Rojo con letras blancas sin relleno
+    ''' </summary>
+    PELIGRO_SIN_RELLENO
+    ''' <summary>
+    ''' Color Amarillo con lestras negras sin relleno
+    ''' </summary>
+    ADVERTENCIA_SIN_RELLENO
+    ''' <summary>
+    ''' Color celeste con letras negras sin relleno
+    ''' </summary>
+    INFO_SIN_RELLENO
+    ''' <summary>
+    ''' Color blanco con letras negras sin relleno
+    ''' </summary>
+    LUZ_SIN_RELLENO
+    ''' <summary>
+    ''' Color negro con letras blancas sin relleno
+    ''' </summary>
+    OSCURO_SIN_RELLENO
+
     ''' <summary>
     ''' Está opción deja al botón por defecto, sin color, sin estilos
     ''' </summary>

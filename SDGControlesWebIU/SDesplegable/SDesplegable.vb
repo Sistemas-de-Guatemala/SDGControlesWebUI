@@ -3,7 +3,7 @@ Imports System.Web.UI
 
 <ToolboxData("<{0}:SDesplegable ID='sddl_' runat=server></{0}:SDesplegable>")>
 Public Class SDesplegable
-    Inherits System.Web.UI.WebControls.DropDownList
+    Inherits WebControls.DropDownList
 
     Sub New()
         EnableViewState = True
@@ -51,30 +51,33 @@ Public Class SDesplegable
     End Property
 
     Private Sub RenderizarBeginTagSinFiltro(writer As HtmlTextWriter)
-        writer.Write("<div class='m-0 form-label'>")
+        writer.Write("<div class='mt-1'>")
         If Titulo.Length > 0 Then
-            writer.Write($"<label class='fuente_aspx form-label' for='{ClientID}'>{Titulo}</label>")
+            writer.Write($"<label for='{ClientID}' class='form-label'>{Titulo}</label>")
         End If
 
-        If CssClass.Contains("select2 form-control") Then
-            CssClass = CssClass.Replace("select2 form-control", "")
+        If Not CssClass.Contains("form-select") Then
+            CssClass &= " form-select"
         End If
 
-        If Not CssClass.Contains("fuente_aspx form-control") Then
-            CssClass &= " fuente_aspx form-control"
-        End If
+        MyBase.RenderBeginTag(writer)
+
+        writer.Write("</div>")
     End Sub
 
     Private Sub RenderizarBeginTagConFiltro(writer As HtmlTextWriter)
         writer.Write($"<div class='sdesplegable' id='{ClientID}'>")
         If Titulo.Length > 0 Then
-            writer.Write($"<label for='{UniqueID}'>{Titulo}</label>")
+            writer.Write($"<label for='{ClientID}' class='form-label'>{Titulo}</label>")
         End If
 
-        If Not CssClass.Contains("select2 form-control") Then
-            CssClass &= " select2 form-control"
+        If Not CssClass.Contains("select2 w-100") Then
+            CssClass &= " select2 w-100"
         End If
 
+        MyBase.RenderBeginTag(writer)
+
+        writer.Write("</div>")
     End Sub
 
     Public Overrides Sub RenderBeginTag(writer As HtmlTextWriter)
@@ -83,8 +86,6 @@ Public Class SDesplegable
         Else
             RenderizarBeginTagConFiltro(writer)
         End If
-
-        MyBase.RenderBeginTag(writer)
     End Sub
 
     Public Overrides Sub RenderEndTag(writer As HtmlTextWriter)
