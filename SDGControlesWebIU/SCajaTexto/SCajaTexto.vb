@@ -8,6 +8,7 @@ Public Class SCajaTexto
 
     Private _SimboloMoneda As String
     Private Autocompletado As New List(Of String)
+    Private uuid As New Guid
     Sub New()
         EnableViewState = True
         _SimboloMoneda = CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol
@@ -29,20 +30,20 @@ Public Class SCajaTexto
     <Category("Diseño")>
     Public Property MostrarSimboloMoneda As Boolean
         Get
-            Return IIf(ViewState($"txt_mostrarsimbolomoneda_{ID}") <> Nothing, ViewState($"txt_mostrarsimbolomoneda_{ID}"), False)
+            Return IIf(ViewState($"txt_mostrarsimbolomoneda_{uuid}") <> Nothing, ViewState($"txt_mostrarsimbolomoneda_{uuid}"), False)
         End Get
         Set(value As Boolean)
-            ViewState($"txt_mostrarsimbolomoneda_{ID}") = value
+            ViewState($"txt_mostrarsimbolomoneda_{uuid}") = value
         End Set
     End Property
 
     <Category("Diseño")>
     Public Property SimboloMoneda As String
         Get
-            Return IIf(ViewState($"txt_simbolo_moneda_{ID}") <> Nothing, ViewState($"txt_simbolo_moneda_{ID}"), "")
+            Return IIf(ViewState($"txt_simbolo_moneda_{uuid}") <> Nothing, ViewState($"txt_simbolo_moneda_{uuid}"), "")
         End Get
         Set(value As String)
-            ViewState($"txt_simbolo_moneda_{ID}") = value
+            ViewState($"txt_simbolo_moneda_{uuid}") = value
         End Set
     End Property
 
@@ -53,10 +54,10 @@ Public Class SCajaTexto
     <Category("Diseño")>
     Public Property IconoIzquierda As String
         Get
-            Return IIf(ViewState($"txt_iconoizquierda{ID}") <> Nothing, ViewState($"txt_iconoizquierda{ID}"), "")
+            Return IIf(ViewState($"txt_iconoizquierda{uuid}") <> Nothing, ViewState($"txt_iconoizquierda{uuid}"), "")
         End Get
         Set(value As String)
-            ViewState($"txt_iconoizquierda{ID}") = value
+            ViewState($"txt_iconoizquierda{uuid}") = value
         End Set
     End Property
 
@@ -67,10 +68,10 @@ Public Class SCajaTexto
     <Category("Diseño")>
     Public Property IconoDerecha As String
         Get
-            Return IIf(ViewState($"txt_iconoderecha_{ID}") <> Nothing, ViewState($"txt_iconoderecha_{ID}"), "")
+            Return IIf(ViewState($"txt_iconoderecha_{uuid}") <> Nothing, ViewState($"txt_iconoderecha_{uuid}"), "")
         End Get
         Set(value As String)
-            ViewState($"txt_iconoderecha_{ID}") = value
+            ViewState($"txt_iconoderecha_{uuid}") = value
         End Set
     End Property
 
@@ -81,10 +82,10 @@ Public Class SCajaTexto
     <Category("Diseño")>
     Public Property Titulo As String
         Get
-            Return IIf(ViewState($"txt_titulo_{ID}") <> Nothing, ViewState($"txt_titulo_{ID}"), "")
+            Return IIf(ViewState($"txt_titulo_{uuid}") <> Nothing, ViewState($"txt_titulo_{uuid}"), "")
         End Get
         Set(value As String)
-            ViewState($"txt_titulo_{ID}") = value
+            ViewState($"txt_titulo_{uuid}") = value
         End Set
     End Property
 
@@ -95,10 +96,10 @@ Public Class SCajaTexto
     <Category("Comportamiento")>
     Public Property Requerido As Boolean
         Get
-            Return IIf(ViewState($"txt_requerido_{ID}") <> Nothing, ViewState($"txt_requerido_{ID}"), False)
+            Return IIf(ViewState($"txt_requerido_{uuid}") <> Nothing, ViewState($"txt_requerido_{uuid}"), False)
         End Get
         Set(value As Boolean)
-            ViewState($"txt_requerido_{ID}") = value
+            ViewState($"txt_requerido_{uuid}") = value
         End Set
     End Property
 
@@ -125,10 +126,10 @@ Public Class SCajaTexto
         If Autocompletado.Count > 0 Then
 
             If Attributes("list") = Nothing Then
-                Attributes.Add("list", $"txt_autocompletado_{ClientID}")
+                Attributes.Add("list", $"txt_autocompletado_{uuid}")
             End If
 
-            writer.Write($"<datalist id='txt_autocompletado_{ClientID}'>")
+            writer.Write($"<datalist id='txt_autocompletado_{uuid}'>")
             For Each palabra In Autocompletado
                 writer.Write($"<option value='{palabra.Replace("'", "´")}' />")
             Next
@@ -172,7 +173,7 @@ Public Class SCajaTexto
     End Sub
 
     Public Overrides Sub RenderBeginTag(writer As HtmlTextWriter)
-        writer.Write("<div class='mt-1'>")
+        writer.Write("<div class='scajatexto mt-1 w-100'>")
 
         If Titulo.Length > 0 Then
             writer.Write($"<label for='{ClientID}'>{Titulo}</label>")

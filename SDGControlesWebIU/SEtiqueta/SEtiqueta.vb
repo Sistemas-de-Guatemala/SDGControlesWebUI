@@ -9,7 +9,7 @@ Public Class SEtiqueta
     Inherits Label
 
     Public Sub New()
-        CssClass += " fuente_aspx form-control"
+        CssClass += " form-control"
     End Sub
 
     ''' <summary>
@@ -19,9 +19,9 @@ Public Class SEtiqueta
     Public Property Titulo As String
 
     Public Overrides Sub RenderControl(writer As HtmlTextWriter)
-        writer.Write("<div class='m-0 form-label'>")
+        writer.Write("<div class='setiqueta mt-1 form-label w-100'>")
         If Titulo.Length > 0 Then
-            writer.Write($"  <p class='fuente_aspx form-label'>{Titulo}</p>")
+            writer.Write($"  <label class='form-label'>{Titulo}</label>")
         End If
         MyBase.RenderControl(writer)
         writer.Write("</div>")

@@ -130,7 +130,7 @@ Public Class SBoton
             Style.Add("outline", "none")
         End If
 
-        writer.Write($"<div class='btn {ObtenerTipoBotonColor()}'>")
+        writer.Write($"<div class='sboton btn {ObtenerTipoBotonColor()}'>")
         If PosIcono = EPosicionIconos.IZQUIERDA Then
             writer.Write($"{Icono} ")
 
@@ -150,6 +150,10 @@ Public Class SBoton
         If Icono.Length > 0 Then
             RenderizarConIcono(writer)
         Else
+            If Not CssClass.Contains("sboton") Then
+                CssClass &= $" sboton"
+            End If
+
             If Not CssClass.Contains("btn") Then
                 CssClass &= $" btn {ObtenerTipoBotonColor()}"
             End If

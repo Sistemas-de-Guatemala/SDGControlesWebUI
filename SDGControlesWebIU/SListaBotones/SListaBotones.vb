@@ -68,7 +68,7 @@ Public Class SListaBotones
     End Sub
 
     Public Overrides Sub RenderControl(writer As HtmlTextWriter)
-        writer.Write($"<div id='{ID}' class='btn-group' role='group'>")
+        writer.Write($"<div id='{ID}' class='slistabotones btn-group' role='group'>")
 
         Dim btn_color As String = "btn-primary"
         RenderizarTipoBotonColor(btn_color)

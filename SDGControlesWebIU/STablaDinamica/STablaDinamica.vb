@@ -45,6 +45,11 @@ Public Class STablaDinamica
     End Property
 
     Protected Overrides Sub OnPreRender(e As EventArgs)
+
+        If Not CssClass.Contains("stabladinamica") Then
+            CssClass &= " stabladinamica"
+        End If
+
         If Exportar And MostrarFiltros Then
             If Not CssClass.Contains("datatable-x-defecto") Then
                 CssClass += " datatable-x-defecto"

@@ -75,7 +75,7 @@ Public Class SRadioLista
             estaHabilitado = "disabled"
         End If
 
-        writer.Write($"<fieldset {estaHabilitado}>")
+        writer.Write($"<fieldset {estaHabilitado} class='sradio'>")
         If (Titulo.Length > 0) Then
             writer.Write($"<legend>{Titulo}</legend>")
         End If

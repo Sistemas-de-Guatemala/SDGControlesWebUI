@@ -51,9 +51,9 @@ Public Class SDesplegable
     End Property
 
     Private Sub RenderizarBeginTagSinFiltro(writer As HtmlTextWriter)
-        writer.Write("<div class='mt-1'>")
+        writer.Write("<div class='sdesplegable mt-1 w-100'>")
         If Titulo.Length > 0 Then
-            writer.Write($"<label for='{ClientID}' class='form-label'>{Titulo}</label>")
+            writer.Write($"<label for='{ClientID}' class='form-label m-0'>{Titulo}</label>")
         End If
 
         If Not CssClass.Contains("form-select") Then
@@ -66,9 +66,9 @@ Public Class SDesplegable
     End Sub
 
     Private Sub RenderizarBeginTagConFiltro(writer As HtmlTextWriter)
-        writer.Write($"<div class='sdesplegable' id='{ClientID}'>")
+        writer.Write($"<div class='sdesplegable w-100' id='{ClientID}'>")
         If Titulo.Length > 0 Then
-            writer.Write($"<label for='{ClientID}' class='form-label'>{Titulo}</label>")
+            writer.Write($"<label for='{ClientID}' class='form-label m-0'>{Titulo}</label>")
         End If
 
         If Not CssClass.Contains("select2 w-100") Then
