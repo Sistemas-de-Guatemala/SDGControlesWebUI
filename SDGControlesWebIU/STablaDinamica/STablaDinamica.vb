@@ -12,7 +12,7 @@ Public Class STablaDinamica
     Private mExportar As Boolean = True
 
     Sub New()
-        CssClass += " table table-borderless table-hover tablaP "
+        CssClass += " table table-borderless table-hover tablaP stabladinamica "
         Width = Unit.Parse("100%")
         AutoGenerateColumns = False
         EnableViewState = True
@@ -45,10 +45,6 @@ Public Class STablaDinamica
     End Property
 
     Protected Overrides Sub OnPreRender(e As EventArgs)
-
-        If Not CssClass.Contains("stabladinamica") Then
-            CssClass &= " stabladinamica"
-        End If
 
         If Exportar And MostrarFiltros Then
             If Not CssClass.Contains("datatable-x-defecto") Then
