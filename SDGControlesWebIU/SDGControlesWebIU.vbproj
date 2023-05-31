@@ -101,8 +101,6 @@
     <Compile Include="SListaBotones\SListaBotones.vb" />
     <Compile Include="SListaBotones\SListaItemBoton.vb" />
     <Compile Include="SListaBotones\SListaItemSeparador.vb" />
-    <Compile Include="STabContenedor\STabContenedor.vb" />
-    <Compile Include="STabContenedor\STabPestana.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
