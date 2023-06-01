@@ -8,8 +8,8 @@ Imports System.Web.UI.WebControls
 Public Class STablaDinamica
     Inherits DataGrid
 
-    Private mMostrarFiltros As Boolean = True
-    Private mExportar As Boolean = True
+    Private mMostrarFiltros As Boolean = False
+    Private mExportar As Boolean = False
 
     Sub New()
         CssClass += " table table-borderless table-hover tablaP stabladinamica "
@@ -46,9 +46,9 @@ Public Class STablaDinamica
 
     Protected Overrides Sub OnPreRender(e As EventArgs)
 
-        If Exportar And MostrarFiltros Then
-            If Not CssClass.Contains("datatable-x-defecto") Then
-                CssClass += " datatable-x-defecto"
+        If Not Exportar And Not MostrarFiltros Then
+            If Not CssClass.Contains("datatable-simple") Then
+                CssClass += " datatable-simple"
             End If
         ElseIf Exportar And Not MostrarFiltros Then
             If Not CssClass.Contains("datatable-con-exportar") Then
@@ -59,7 +59,7 @@ Public Class STablaDinamica
                 CssClass += " datatable-con-filtros"
             End If
         Else
-            If Not CssClass.Contains("datatable-con-defecto") Then
+            If Not CssClass.Contains("datatable-x-defecto") Then
                 CssClass += " datatable-x-defecto"
             End If
         End If
