@@ -16,6 +16,48 @@ Public Class SCajaTexto
     End Sub
 
     ''' <summary>
+    ''' Esta propiedad renderiza un estilo en el CSS del contenedor del input que es un div
+    ''' </summary>
+    ''' <returns></returns>
+    <Category("Diseño")>
+    Public Property CssClassContenedor As String
+        Get
+            Return IIf(ViewState($"txt_cssclasscontenedor_{uuid}") <> Nothing, ViewState($"txt_cssclasscontenedor_{uuid}"), "")
+        End Get
+        Set(value As String)
+            ViewState($"txt_cssclasscontenedor_{uuid}") = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Estilos del icono de la izquierda
+    ''' </summary>
+    ''' <returns>String</returns>
+    <Category("Diseño")>
+    Public Property CssClassIconoIzquierda As String
+        Get
+            Return IIf(ViewState($"txt_cssclassiconoizquierda_{uuid}") <> Nothing, ViewState($"txt_cssclassiconoizquierda_{uuid}"), "")
+        End Get
+        Set(value As String)
+            ViewState($"txt_cssclassiconoizquierda_{uuid}") = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Estilos del icono de la derecha
+    ''' </summary>
+    ''' <returns>String</returns>
+    <Category("Diseño")>
+    Public Property CssClassIconoDerecha As String
+        Get
+            Return IIf(ViewState($"txt_cssclassiconoderecha_{uuid}") <> Nothing, ViewState($"txt_cssclassiconoderecha_{uuid}"), "")
+        End Get
+        Set(value As String)
+            ViewState($"txt_cssclassiconoderecha_{uuid}") = value
+        End Set
+    End Property
+
+    ''' <summary>
     ''' Obtiene el simbolo de la moneda
     ''' </summary>
     ''' <returns></returns>
@@ -142,16 +184,20 @@ Public Class SCajaTexto
     ''' </summary>
     ''' <param name="writer"></param>
     Public Overridable Sub RenderizarControlConIconosOMoneda(writer As HtmlTextWriter)
-        writer.Write("<div class='input-group'>")
+        writer.Write($"<div class='input-group {CssClassContenedor}'>")
 
         If MostrarSimboloMoneda Then
             ' Renderizar Moneda
-            writer.Write($"<span class='input-group-text'>{IIf(SimboloMoneda.Length > 0, SimboloMoneda, _SimboloMoneda)}</span>")
+            writer.Write($"<span class='input-group-text {CssClassIconoIzquierda}'>{IIf(SimboloMoneda.Length > 0, SimboloMoneda, _SimboloMoneda)}</span>")
         End If
 
         If Not MostrarSimboloMoneda And IconoIzquierda.Length > 0 Then
             ' Renderizar el icono de la izquierda si el simbolo de moneda no está activo
-            writer.Write($"<span class='input-group-text'>{IconoIzquierda}</span>")
+            writer.Write($"<span class='input-group-text {CssClassIconoIzquierda}'>{IconoIzquierda}</span>")
+        End If
+
+        If Not CssClass.Contains("form-control") Then
+            CssClass &= " form-control"
         End If
 
         ' Renderizar Input
@@ -159,7 +205,7 @@ Public Class SCajaTexto
 
         If IconoDerecha.Length > 0 Then
             ' Renderziar el icono de la derecha
-            writer.Write($"<span class='input-group-text'>{IconoDerecha}</span>")
+            writer.Write($"<span class='input-group-text {CssClassIconoDerecha}'>{IconoDerecha}</span>")
         End If
         writer.Write("</div>")
     End Sub
@@ -169,11 +215,15 @@ Public Class SCajaTexto
     ''' </summary>
     ''' <param name="writer"></param>
     Public Overridable Sub RenderizacionNormal(writer As HtmlTextWriter)
+        If Not CssClass.Contains("form-control") Then
+            CssClass &= " form-control"
+        End If
+
         MyBase.RenderBeginTag(writer)
     End Sub
 
     Public Overrides Sub RenderBeginTag(writer As HtmlTextWriter)
-        writer.Write("<div class='scajatexto mt-1 w-100'>")
+        writer.Write($"<div class='scajatexto mt-1 {CssClassContenedor}'>")
 
         If Titulo.Length > 0 Then
             writer.Write($"<label for='{ClientID}'>{Titulo}</label>")

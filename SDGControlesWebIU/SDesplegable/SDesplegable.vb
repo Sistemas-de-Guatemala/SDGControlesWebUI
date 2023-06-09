@@ -5,6 +5,8 @@ Imports System.Web.UI
 Public Class SDesplegable
     Inherits WebControls.DropDownList
 
+    Private uuid As New Guid
+
     Sub New()
         EnableViewState = True
     End Sub
@@ -35,6 +37,20 @@ Public Class SDesplegable
     End Property
 
     ''' <summary>
+    ''' Está clase se renderizará en el contenedor del desplegable
+    ''' </summary>
+    ''' <returns>String</returns>
+    <Category("Diseño")>
+    Public Property CssClassContenedor As String
+        Get
+            Return IIf(ViewState("ddl_cssclasscontenedor_desplegable") <> Nothing, ViewState("ddl_cssclasscontenedor_desplegable"), "")
+        End Get
+        Set(value As String)
+            ViewState("ddl_cssclasscontenedor_desplegable") = value
+        End Set
+    End Property
+
+    ''' <summary>
     ''' Esta propiedad si es verdadera convierte el desplegable en un desplegable con filtro, de lo contrario será un simple desplegable
     ''' </summary>
     ''' <returns>Boolean</returns>
@@ -51,7 +67,7 @@ Public Class SDesplegable
     End Property
 
     Private Sub RenderizarBeginTagSinFiltro(writer As HtmlTextWriter)
-        writer.Write("<div class='sdesplegable mt-1 w-100'>")
+        writer.Write($"<div class='sdesplegable mt-1 {CssClassContenedor}'>")
         If Titulo.Length > 0 Then
             writer.Write($"<label for='{ClientID}' class='form-label m-0'>{Titulo}</label>")
         End If
@@ -66,13 +82,13 @@ Public Class SDesplegable
     End Sub
 
     Private Sub RenderizarBeginTagConFiltro(writer As HtmlTextWriter)
-        writer.Write($"<div class='sdesplegable w-100' id='{ClientID}'>")
+        writer.Write($"<div class='sdesplegable {CssClassContenedor}' id='{ClientID}'>")
         If Titulo.Length > 0 Then
             writer.Write($"<label for='{ClientID}' class='form-label m-0'>{Titulo}</label>")
         End If
 
         If Not CssClass.Contains("select2 w-100") Then
-            CssClass &= " select2 w-100"
+            CssClass &= $" select2 w-100"
         End If
 
         MyBase.RenderBeginTag(writer)

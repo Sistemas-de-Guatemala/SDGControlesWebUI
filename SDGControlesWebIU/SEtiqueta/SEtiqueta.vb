@@ -18,8 +18,17 @@ Public Class SEtiqueta
     ''' <returns>String</returns>
     Public Property Titulo As String
 
+    Public Property CssClassContenedor As String
+        Get
+            Return IIf(ViewState("lbd_cssclasscontenedor_etiqueta") <> Nothing, ViewState("lbd_cssclasscontenedor_etiqueta"), "")
+        End Get
+        Set(value As String)
+            ViewState("lbd_cssclasscontenedor_etiqueta") = value
+        End Set
+    End Property
+
     Public Overrides Sub RenderControl(writer As HtmlTextWriter)
-        writer.Write("<div class='setiqueta mt-1 form-label w-100'>")
+        writer.Write($"<div class='setiqueta mt-1 form-label w-100 {CssClassContenedor}'>")
         If Titulo.Length > 0 Then
             writer.Write($"  <label class='form-label'>{Titulo}</label>")
         End If
